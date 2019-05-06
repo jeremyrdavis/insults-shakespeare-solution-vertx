@@ -63,19 +63,19 @@ public class HttpApplication extends AbstractVerticle {
     System.out.println("adjective.url:" + config().getString("adjective.url"));
 
     Single<JsonObject> noun = webClient
-            .get(8080, config().getString("noun.url", "insult-nouns"),"/api/noun")
+            .get(config().getInteger("noun.port", 8080), config().getString("noun.url", "insult-nouns"),"/api/noun")
             .rxSend()
             .doOnSuccess(r -> System.out.println("noun" + r.bodyAsString()))
             .map(HttpResponse::bodyAsJsonObject);
 
     Single<JsonObject> adj1 = webClient
-            .get(8080, config().getString("adjective.url", "insult-adjectives"), "/api/adjective")
+            .get(config().getInteger("adjective.port", 8080), config().getString("adjective.url", "insult-adjectives"), "/api/adjective")
             .rxSend()
             .doOnSuccess(r -> System.out.println("adj1" + r.bodyAsString()))
             .map(HttpResponse::bodyAsJsonObject);
 
     Single<JsonObject> adj2 = webClient
-            .get(8080, config().getString("adjective.url", "insult-adjectives"), "/api/adjective")
+            .get(config().getInteger("adjective.port", 8080), config().getString("adjective.url", "insult-adjectives"), "/api/adjective")
             .rxSend()
             .doOnSuccess(r -> System.out.println("adj2" + r.bodyAsString()))
             .map(HttpResponse::bodyAsJsonObject);
