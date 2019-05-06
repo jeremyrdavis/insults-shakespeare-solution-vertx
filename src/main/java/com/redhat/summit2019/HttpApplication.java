@@ -56,12 +56,6 @@ public class HttpApplication extends AbstractVerticle {
 
   private void insultHandler(RoutingContext rc) {
 
-    System.out.println("insultHandler called");
-    System.out.println("noun.port: " + config().getInteger("noun.port"));
-    System.out.println("noun.url: " + config().getString("noun.url"));
-    System.out.println("adjective.port: " + config().getInteger("adjective.port"));
-    System.out.println("adjective.url:" + config().getString("adjective.url"));
-
     Single<JsonObject> noun = webClient
             .get(config().getInteger("noun.port", 8080), config().getString("noun.url", "insult-nouns"),"/api/noun")
             .rxSend()

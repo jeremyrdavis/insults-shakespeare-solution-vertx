@@ -37,6 +37,8 @@ public class InsultEndpointTest {
         new DeploymentOptions().setConfig(
                 new JsonObject()
                         .put("http.port", PORT)
+                        .put("noun.port", 80)
+                        .put("adjective.port", 80)
                         .put("adjective.url", "insult-adjectives-insults-workshop.b9ad.pro-us-east-1.openshiftapps.com")
                         .put("noun.url", "insult-nouns-insults-workshop.b9ad.pro-us-east-1.openshiftapps.com")
         ),
